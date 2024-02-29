@@ -1,20 +1,33 @@
 #include <iostream>
+#include <cstdlib>
+#include <sys/types.h>
+#include <unistd.h>
 
-int main(int argc, char* argv[]) {
-    if (argc < 3) {
-        std::cerr << "Usage: " << argv[0] << " <program file> <timer interval>" << std::endl;
+int main(int argc, char* argv[])
+{
+    if (argc != 3)
+    {
+        std::cerr << "Usage: " << argv[0] << " <program.txt> <timerValue>" <<std::endl;
         return 1;
     }
 
-    std::string programFile = argv[1];
-    int timerInterval = std::stoi(argv[2]);
+    const char* filename = argv[1];
+    int timerValue = std::atoi(argv[2]);
 
-    // Initialize CPU and Memory
-    // You might use fork() and exec() here if you were separating into multiple processes
-    // For a single-file project, you could simulate this behavior within a unified program flow
+    if (timerValue <= 0)
+    {
+        std::cerr << "Invalid timer value: " << argv[2] << ". The timer value must be greater than 0.";
+    }
 
-    std::cout << "Starting simulation with program: " << programFile
-              << " and timer interval: " << timerInterval << std::endl;
+    if (fork())
+    {
+        // parent process
+        std::cout << "hello from parent" << std::endl;
+    }
+    else
+    {
+        // child process
+        std::cout << "hello from child" << std::endl;
+    }
 
-    return 0;
 }

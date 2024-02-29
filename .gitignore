@@ -1,2 +1,25 @@
 cmake-build-debug/
-*.txt
+# CLion-specific
+.idea/
+
+# CMake build directory
+cmake-build-debug*/
+cmake-build-debug-wsl/
+
+# Executables and Object files
+*.exe
+*.o
+*.a
+*.so
+*.out
+
+# Temporary files
+*.log
+*.tmp
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cbp
