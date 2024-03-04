@@ -1,6 +1,7 @@
 #include "Common.h"
 #include <set>
 #include <random>
+#include <ctime>
 
 void simulateCPU(int read_fd, int write_fd, int timerThreshold)
 {
@@ -89,7 +90,18 @@ void restoreStateAfterInterrupt(int read_fd, int write_fd, CPUState& cpu)
 
 bool instructionRequiresOperand(int IR)
 {
-    static std::set<int> instructionsRequiringOperands = {1, 2, 3, 4, 5, 7, 9, 20, 21, 22, 23};
+    static std::set<int> instructionsRequiringOperands;
+    instructionsRequiringOperands.insert(1);
+    instructionsRequiringOperands.insert(2);
+    instructionsRequiringOperands.insert(3);
+    instructionsRequiringOperands.insert(4);
+    instructionsRequiringOperands.insert(5);
+    instructionsRequiringOperands.insert(7);
+    instructionsRequiringOperands.insert(9);
+    instructionsRequiringOperands.insert(20);
+    instructionsRequiringOperands.insert(21);
+    instructionsRequiringOperands.insert(22);
+    instructionsRequiringOperands.insert(23);
     return instructionsRequiringOperands.find(IR) != instructionsRequiringOperands.end();
 }
 
@@ -126,10 +138,15 @@ void writeToMemory(int write_fd, int address, int value, CPUState& cpu)
 
 int getRandomNumber()
 {
-    static std::random_device rd;
-    static std::mt19937 gen(rd());
-    static std::uniform_int_distribution<> distrib(1, 100);
-    return distrib(gen);
+    static bool initialized = false;
+    if (!initialized)
+    {
+        std::srand(std::time(NULL));
+        initialized = true;
+    }
+
+    // Generate a random number between 1 and 100
+    return std::rand() % 100 + 1;
 }
 
 void putPort(int AC,int operand)

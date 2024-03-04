@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
         close(pipeMemoryToCPU[1]);
 
         simulateCPU(pipeMemoryToCPU[0], pipeCPUToMemory[1], timerValue);
-        wait(nullptr);
+        wait(NULL);
     }
     else // child process - Memory
     {

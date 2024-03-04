@@ -11,7 +11,7 @@ void simulateMemory(int read_fd, int write_fd, std::ifstream& file)
 
     while (true)
     {
-        Message msg{};
+        Message msg;
 
         ssize_t bytesRead = read(read_fd, &msg, sizeof(msg));
         if (bytesRead == -1)
