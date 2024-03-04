@@ -22,7 +22,7 @@ int setup(int argc, char* argv[], std::ifstream& file, int& timerValue, int pipe
 
     try
     {
-        timerValue = std::atoi(argv[2]);
+        timerValue = atoi(argv[2]);
         if (timerValue <= 0)
         {
             std::cerr << "Invalid timer value: " << argv[2] << ". The timer value must be greater than 0." << std::endl;

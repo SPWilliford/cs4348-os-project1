@@ -1,6 +1,5 @@
 #include "Common.h"
 #include <set>
-#include <random>
 #include <ctime>
 
 void simulateCPU(int read_fd, int write_fd, int timerThreshold)
@@ -141,12 +140,12 @@ int getRandomNumber()
     static bool initialized = false;
     if (!initialized)
     {
-        std::srand(std::time(NULL));
+        srand(std::time(NULL));
         initialized = true;
     }
 
     // Generate a random number between 1 and 100
-    return std::rand() % 100 + 1;
+    return rand() % 100 + 1;
 }
 
 void putPort(int AC,int operand)

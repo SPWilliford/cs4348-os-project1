@@ -12,18 +12,21 @@ enum CPUMode { USER_MODE, KERNEL_MODE };
 
 enum InterruptType { TIMER, SOFTWARE };
 
-struct CPUState
-{
-    int PC = 0; // Program Counter
-    int SP = 999; // Stack Pointer
-    int IR = 0; // Instruction Register
-    int AC = 0; // Accumulator
-    int X = 0, Y = 0; // General-purpose registers
-    int operand = 0; // Operand for current instruction
-    int instructionCount = 0;
+struct CPUState {
+    int PC; // Program Counter
+    int SP; // Stack Pointer
+    int IR; // Instruction Register
+    int AC; // Accumulator
+    int X, Y; // General-purpose registers
+    int operand; // Operand for current instruction
+    int instructionCount;
     int timerThreshold;
-    CPUMode mode = USER_MODE;
-    bool running = true; // CPU running state
+    CPUMode mode;
+    bool running; // CPU running state
+
+    CPUState()
+            : PC(0), SP(999), IR(0), AC(0), X(0), Y(0), operand(0), instructionCount(0), mode(USER_MODE),
+              running(true) {}
 };
 
 void simulateCPU(int read_fd, int write_fd, int timerThreshold);
