@@ -140,8 +140,8 @@ int getRandomNumber()
     static bool initialized = false;
     if (!initialized)
     {
-        srand(std::time(NULL));
-        initialized = true;
+        srand(time(NULL));
+        return rand() % 100 + 1;
     }
 
     // Generate a random number between 1 and 100

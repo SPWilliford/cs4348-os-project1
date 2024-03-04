@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
+#include <cstdlib>
 
 int setup(int argc, char* argv[], std::ifstream& file, int& timerValue, int pipeCPUToMemory[2], int pipeMemoryToCPU[2])
 {
